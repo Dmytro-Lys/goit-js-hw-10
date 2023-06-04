@@ -1,48 +1,26 @@
-* {
-  box-sizing: border-box;
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
-  color: #212121;
-  line-height: 1.5;
-}
-
 img {
   display: block;
-  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-width: 360px;
 }
-
-/* for timer */
-.timer {
+.cat-info {
   display: flex;
-  column-gap: 12px;
+  gap: 20px;
+  padding-top: 10px;
 }
-.field {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1.2;
-}
-.value {
-  font-size: 44px;
-}
-.label {
-  text-transform: uppercase;
-  font-size: 16px;
-}
-
-/* for promises */
-.field-promises {
+.cat-info-text {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
-.btn-form-promises {
-  display: block;
-  margin-top: 24px;
-  height: 22px;
+
+.invisible {
+  display: none;
 }
