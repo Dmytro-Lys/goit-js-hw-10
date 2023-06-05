@@ -2,14 +2,15 @@ import { fetchBreeds, fetchCatByBreed } from "./js/cat-api.js";
 import Notiflix from 'notiflix';
 import "notiflix/src/notiflix.css";
 
+Notiflix.Notify.init({
+    position: 'center-top',
+    timeout: 3600000
+})
+let eventError = false;
 const refs = {
     select: document.querySelector(".breed-select"),
-    pLoader: document.querySelector(".loader"),
-    pError: document.querySelector(".error"),
     divData: document.querySelector(".cat-info")
 }
-
-
 
 startLoading(refs.select);
 fetchBreeds().then((data) => {
@@ -34,7 +35,7 @@ function onSelect(e) {
     startLoading(refs.divData);
     fetchCatByBreed(e.target.value).then((data) => {
        return data.reduce(
-        (markup, currentEl) => markup + createInfoElement(toArgs(currentEl)), "");
+        (markup, currentEl) => markup + createInfoElement(getArgs(currentEl)), "");
     }).then(updateInfo)
         .catch(onError)
         .finally(endLoading);  
@@ -59,7 +60,7 @@ function updateInfo(markup) {
     refs.divData.classList.remove("invisible");
 }
 
-function toArgs({ url, breeds }) {
+function getArgs({ url, breeds }) {
     const { name, description, temperament } = breeds[0];
     return {
         url,
@@ -68,13 +69,23 @@ function toArgs({ url, breeds }) {
         temperament
     }
 }
+
 function startLoading(element) {
+    if (eventError) afterError();
     element.classList.add("invisible");
-    Notiflix.Loading.hourglass(refs.pLoader.textContent);
+    Notiflix.Loading.hourglass('Loading data, please wait...',{
+  backgroundColor: 'rgba(0,0,0,0.6)',
+});
 }
 function endLoading() {
     Notiflix.Loading.remove();
 }
 function onError() {
-    Notiflix.Notify.failure(refs.pError.textContent);
+    eventError = true;
+    Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+}
+function afterError() {
+    const notify = document.querySelector(".notiflix-notify-failure");
+    if (notify) notify.remove();
+    eventError = false;
 }

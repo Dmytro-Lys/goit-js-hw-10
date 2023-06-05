@@ -8,7 +8,7 @@ img {
   display: block;
   height: auto;
   object-fit: contain;
-  max-width: 360px;
+  width: 428px;
 }
 .cat-info {
   display: flex;
@@ -19,6 +19,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 768px;
 }
 
 .invisible {
