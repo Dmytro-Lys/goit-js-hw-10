@@ -10,6 +10,9 @@ img {
   object-fit: contain;
   width: 428px;
 }
+.breed-select {
+  max-width: 428px;
+}
 .cat-info {
   display: flex;
   gap: 20px;
