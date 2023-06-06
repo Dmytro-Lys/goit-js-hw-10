@@ -93,9 +93,9 @@ function endLoading() {
     Notiflix.Loading.remove();
 }
 
-function onError() {
+function onError(error) {
     eventError = true;
-    Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+    Notiflix.Notify.failure(error.message);
 }
 
 function afterError() {
